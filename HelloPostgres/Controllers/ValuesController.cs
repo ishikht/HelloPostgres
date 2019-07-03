@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HelloPostgres.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,30 +11,23 @@ namespace HelloPostgres.Controllers
     public class ValuesController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public IEnumerable<Message> Get()
         {
-            return new string[] { "value1", "value2" };
+            var context = new DemoDbContext();
+            return context.Messages.ToList();
         }
 
-        // GET api/values/5
-        public string Get(int id)
+        public IEnumerable<Message> Add()
         {
-            return "value";
+            var context = new DemoDbContext();
+
+            context.Messages.Add(new Message { Text = "hello Postgres from IIS" });
+            context.SaveChanges();
+
+
+            return context.Messages.ToList();
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
-        }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-        }
     }
 }
