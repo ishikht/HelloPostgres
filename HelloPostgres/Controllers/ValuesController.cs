@@ -10,22 +10,26 @@ namespace HelloPostgres.Controllers
 {
     public class ValuesController : ApiController
     {
-        // GET api/values
-        public IEnumerable<Message> Get()
+        [HttpGet]
+        [Route("all")]
+        public IEnumerable<Message> All()
         {
             var context = new DemoDbContext();
             return context.Messages.ToList();
         }
 
-        public IEnumerable<Message> Add()
+        [HttpGet]
+        [Route("add")]
+        public Message Add()
         {
             var context = new DemoDbContext();
 
-            context.Messages.Add(new Message { Text = "hello Postgres from IIS" });
+            Message msg = new Message { Text = "hello Postgres from IIS" };
+            context.Messages.Add(msg);
             context.SaveChanges();
 
 
-            return context.Messages.ToList();
+            return msg;
         }
 
 
