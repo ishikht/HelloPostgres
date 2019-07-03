@@ -4,6 +4,11 @@ services:
   hellopostgres:
     ports:
       - "8080:80"
+
+  postgresdb:
+    ports:
+      - "5432:5432"
+
 networks:
   default:
     external:

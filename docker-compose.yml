@@ -6,3 +6,11 @@ services:
     build:
       context: .\HelloPostgres
       dockerfile: Dockerfile
+    depends_on:
+      - postgresdb
+
+  postgresdb:
+    image: stellirin/postgres-windows
+    container_name: postgresdb
+    environment:
+      POSTGRES_PASSWORD: "M1llions2019"
