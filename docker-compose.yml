@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  hellopostgres:
+    image: ${DOCKER_REGISTRY-}hellopostgres
+    build:
+      context: .\HelloPostgres
+      dockerfile: Dockerfile
